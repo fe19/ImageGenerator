@@ -7,34 +7,39 @@ import java.util.Scanner;
 
 public class ImageGenerator {
 
-    String PATH = "./images";
-
+    int IMAGE_HEIGHT = 500;
+    int IMAGE_WIDTH = 1000;
+    String IMAGE_NAME = "Grundriss";
     String FILE_EXTENSION = "jpg";
+    String PATH = ".";
+    int FACTOR_M_IN_PIXEL = 30;
+    int MARGIN_IN_PIXEL = 50;
 
     public void generateImage()  {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Lenght:");
-
-        //int lenght = scanner.nextInt();
-        int lenght = 20;
+        System.out.println("Length:");
+        //int length = scanner.nextInt();
+        int widthInM = 20;
 
         System.out.println("Width:");
-
         //int width = scanner.nextInt();
-        int width = 10;
+        int heightInM = 10;
 
-        BufferedImage bufferedImage = new BufferedImage(width, lenght, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = bufferedImage.createGraphics();
+        System.out.println("Rooms:");
+        //int nbrRooms = scanner.nextInt();
+        int nbrRooms = 2;
 
-        g2d.setColor(Color.white);
-        g2d.drawString("Image Generator", 5, 5);
+        BufferedImage bufferedImage = new BufferedImage(IMAGE_WIDTH, IMAGE_HEIGHT, BufferedImage.TYPE_INT_RGB);
+        Graphics2D graphics2D = bufferedImage.createGraphics();
+        graphics2D.setColor(Color.white);
+        graphics2D.drawString("Grundriss für " + nbrRooms + " Zimmer mit " + widthInM * heightInM + "m^2", 20, 20);
         //g2d.fillOval(0, 0, 5, 5);
-        g2d.dispose();
+        graphics2D.drawRect(MARGIN_IN_PIXEL, MARGIN_IN_PIXEL, MARGIN_IN_PIXEL + widthInM * FACTOR_M_IN_PIXEL, MARGIN_IN_PIXEL + heightInM * FACTOR_M_IN_PIXEL);
+        graphics2D.dispose();
 
-        //File file = new File(PATH + File.separator + "example" + "." + FILE_EXTENSION);
-        File file = new File("example" + "." + FILE_EXTENSION);
+        File file = new File(PATH + File.separator + IMAGE_NAME + "." + FILE_EXTENSION);
 
         try {
             if (!file.exists()) {
@@ -45,6 +50,9 @@ public class ImageGenerator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void drawGroundplan() {
 
     }
 
