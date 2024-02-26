@@ -12,13 +12,13 @@ public class ImageGenerator {
     int IMAGE_HEIGHT = 2480; // A4 height
     int IMAGE_WIDTH = 3508; // A4 width
     String IMAGE_NAME = "Grundriss";
-    String FILE_EXTENSION = "jpg";
+    String FILE_EXTENSION = "jpg"; // jpg has 72ppi = 2835 pixel per m
     String VISA = "fe";
     String PATH = ".";
     int FACTOR_M_IN_PIXEL = 50;
     int MARGIN_IN_PIXEL = 75;
 
-    public void generateImage()  {
+    public void generateImage() {
 
         Scanner scanner = new Scanner(System.in);
 
